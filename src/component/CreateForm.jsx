@@ -1,25 +1,34 @@
+import axios from "axios";
 import React from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { lists } from "../store/actions/formsActions";
 
 function CreateForm(props) {
   const params = useParams();
+  const dispatch=useDispatch();
   const Allforms = useSelector((s) => s.data.forms);
-
   const newArr = Allforms && Allforms.filter((i) => i.path == params.id);
 
   const { register, errors, handleSubmit } = useForm();
 
   const onSubmit = async (input) => {
-    console.log(input);
+    if(newArr){
+      axios.post(`${newArr[0].createurl}`,input)
+      .then(res => {
+        dispatch({type:'GET_USER' , payload:input})
+
+      })
+      .catch(e => {
+        
+          dispatch({type:'GET_USER' , payload:input})
+      });
+    }
   };
 
-  // let positive_array = Allforms && Allforms.filter(function(value) {
-  //   return value >= 0; });
 
-  console.log(params, Allforms, newArr);
 
   return (
     <Container className="mt-4">
@@ -36,10 +45,9 @@ function CreateForm(props) {
             </div>
           ))}
 
-        {/* <input type="submit" value="Submit" /> */}
 
         <Button variant="primary" type="submit">
-          ازسال
+          ارسال
         </Button>
         </Form>
     </Container>

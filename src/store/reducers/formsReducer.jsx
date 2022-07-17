@@ -11,6 +11,11 @@ export function data(state = initialState, action) {
        
         
       };
+      case "GET_USER":
+        return {
+          ...state,
+          formData:action.payload
+        }
     
     default:
       return state
