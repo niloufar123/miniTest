@@ -4,6 +4,9 @@ import { Form, Button, Container } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useSelector,useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { toast,ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 import { lists } from "../store/actions/formsActions";
 
 function CreateForm(props) {
@@ -19,9 +22,29 @@ function CreateForm(props) {
       axios.post(`${newArr[0].createurl}`,input)
       .then(res => {
         dispatch({type:'GET_USER' , payload:input})
+        toast.success('با موفقیت افزوده شد', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
 
       })
       .catch(e => {
+        toast.error('سرویس مورد نظر در دسترس نیست ', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+
+          
         
           dispatch({type:'GET_USER' , payload:input})
       });
@@ -50,6 +73,8 @@ function CreateForm(props) {
           ارسال
         </Button>
         </Form>
+        <ToastContainer />
+
     </Container>
   );
 }
