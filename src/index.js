@@ -17,9 +17,7 @@ root.render(
     {/* <App /> */}
     <Provider store={store}>
         <BrowserRouter basename="/">
-            {/* <Suspense fallback={<LoadingSpinner></LoadingSpinner>}> */}
             <App/>
-        {/* </Suspense>  */}
         </BrowserRouter>
     </Provider>
   </React.StrictMode>

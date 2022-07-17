@@ -16,9 +16,7 @@ function Home() {
       </Navbar>
       ):''
         }
-       
-       {/* {Allforms ? Allforms.map(item => (<Link to={'/' + item.path} >{item.form}</Link>)) : ''} */}
-{/* test */}
+ 
     </div>
   )
 }

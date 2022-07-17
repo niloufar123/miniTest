@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 import { toast,ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import { lists } from "../store/actions/formsActions";
 
 function CreateForm(props) {
   const params = useParams();
